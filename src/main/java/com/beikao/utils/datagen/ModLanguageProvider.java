@@ -13,5 +13,6 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("item.beikaoutils.beikao", "Beikao");
+        add("item.beikaoutils.serrao","Flavio Serrao");
     }
 }

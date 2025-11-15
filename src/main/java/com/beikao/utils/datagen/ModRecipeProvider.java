@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
+import net.minecraft.tags.ItemTags; // <-- ADD THIS
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,5 +32,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('P', Items.COOKED_PORKCHOP)
                 .unlockedBy("has_beef", has(Items.BREAD))
                 .save(output);
-    }
+                
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, BeikaoUtils.SERRAO.get())
+                .pattern("dRO")
+                .pattern("ddO")
+                .define('d', Items.DIAMOND)
+                .define('R', Items.REDSTONE)
+                .define('O', ItemTags.PLANKS)
+                .unlockedBy("has_iron", has(Items.DIAMOND))
+                .save(output);  
+
+}
 }

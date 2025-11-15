@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "O": {
+      "tag": "minecraft:planks"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "dRO",
+    "ddO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "beikaoutils:serrao"
+  }
+}

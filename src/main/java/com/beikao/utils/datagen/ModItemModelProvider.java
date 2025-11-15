@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // Gera o modelo básico simples
         basicItem(BeikaoUtils.BEIKAO.get());
+        basicItem(BeikaoUtils.SERRAO.get());
     }
 
     /**
