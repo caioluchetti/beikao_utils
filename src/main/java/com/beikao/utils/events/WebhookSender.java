@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 public class WebhookSender {
 
     // Your webhook URL here
-    private static final String WEBHOOK_URL = "redacted";
+    private static final String WEBHOOK_URL = "https://discord.com/api/webhooks/1439060654609662072/1ubdpuA95pufvR8D95V-wNoaQKYDm_AnCWc9WKjI8XcnGUenEzTMQ0OrRd43Q-nH60NB";
 
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
 
