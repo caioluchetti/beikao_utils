@@ -1,6 +1,5 @@
 package com.beikao.utils.events;
 
-
 import java.util.Map;
 import java.util.HashMap;
 import java.util.UUID;
@@ -13,7 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 
 @EventBusSubscriber(modid = BeikaoUtils.MODID)
@@ -29,17 +28,13 @@ public class ItemEatEvents {
         // Only players
         if (!(entity instanceof Player player)) return;
 
-        // Check if THIS is the item eaten
         if (eaten.getItem() == BeikaoUtils.BEIKAO.get()) {
 
             long now = System.currentTimeMillis();
             UUID id = player.getUUID();
 
-            // Prevent double webhook: cooldown 300 ms
-            if (lastEatTime.containsKey(id)) {
-                long last = lastEatTime.get(id);
-                if (now - last < 300) return; // ignore duplicate event
-            }
+            long last = lastEatTime.getOrDefault(id, 0L);
+            if (now - last < 300) return;
 
             lastEatTime.put(id, now);
 

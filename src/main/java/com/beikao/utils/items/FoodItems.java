@@ -15,6 +15,7 @@ public class FoodItems {
                     .saturationModifier(1.0F)
                     .effect(() -> new MobEffectInstance(MobEffects.CONFUSION,10,0), 1.0F)
                     .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,20,2),1.0F)
+                    .alwaysEdible()
                     .build();
                     
 

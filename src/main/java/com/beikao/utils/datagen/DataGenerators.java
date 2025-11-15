@@ -12,7 +12,10 @@ import java.util.concurrent.CompletableFuture;
 
 import com.beikao.utils.BeikaoUtils;
 
-@EventBusSubscriber(modid = BeikaoUtils.MODID)
+@EventBusSubscriber(
+        modid = BeikaoUtils.MODID,
+        bus = EventBusSubscriber.Bus.MOD // ← REQUIRED for datagen
+)
 public class DataGenerators {
 
     @SubscribeEvent
@@ -22,24 +25,26 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
-        PackOutput output = event.getGenerator().getPackOutput();
 
-        // CLIENT DATA (models, languages)
+        // --- Client data (models, lang files) ---
         if (event.includeClient()) {
-            generator.addProvider(true,
-                    new ModItemModelProvider(packOutput, fileHelper));
+            generator.addProvider(
+                    true,
+                    new ModItemModelProvider(packOutput, fileHelper)
+            );
 
-            generator.addProvider(true,
-                    new ModLanguageProvider(packOutput));
+            generator.addProvider(
+                    true,
+                    new ModLanguageProvider(packOutput)
+            );
         }
 
-        // SERVER DATA (recipes, loot tables, etc.)
+        // --- Server data (recipes, loot tables, tags...) ---
         if (event.includeServer()) {
-        event.getGenerator().addProvider(
-                true,
-                new ModRecipeProvider(output, lookup)
-        );
-    }
-
+            generator.addProvider(
+                    true,
+                    new ModRecipeProvider(packOutput, lookup)
+            );
+        }
     }
 }
